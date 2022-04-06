@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset=UTF-8>
+    <title>Test client</title>
+</head>
+
+<body>
+    <br>
+    <input type="number" name="machine_id" id="machine_id">
+    <input type="button" value="Start the washing machine" id="start_button" onclick="clickStartButton()"><br><br>
+    <input type="button" value="Get PLC Status now" id="status_button" onclick="clickStatusButton()"><br>
+    <input type="button" value="Background Status check on" id="status_check_on_button"
+        onclick="clickStatusCheckOnButton()">
+    <input type="button" value="Background Status check off" id="status_check_off_button"
+        onclick="clickStatusCheckOffButton()">
+    <input type="text" id="plc_status_display" name="plc_status_display" value="Status" readonly><br><br>
+    <h1 id="status">Status</h1>
+
+    <script>
+
+        looping_id = null
+
+        function clickStatusCheckOffButton() {
+            console.log("Backgound status check OFF");
+            if (typeof looping_id !== 'undefined') {
+                clearInterval(looping_id);
+                looping_id = null;
+            }
+        }
+
+        function clickStatusCheckOnButton() {
+            console.log("Backgound status check ON");
+            console.log(`START, loop is ${looping_id}`)
+            if ((typeof (looping_id) == 'undefined') || (looping_id == null)) {
+                looping_id = setInterval(function () {
+                    polling = backgroundStatusPolling();
+                    console.log(`Loop ID is ${looping_id}`)
+                }, 2000);
+            }
+        }
+
+        const plc_ip = "127.0.0.1"
+        function clickStartButton() {
+            let input_machine_id = document.getElementById("machine_id").value;
+            document.getElementById("status").innerHTML = (`Machine ${input_machine_id} starting...`);
+            fetch(`http://${plc_ip}:8000/start_machine/${input_machine_id}`).then((Response) => {
+                return Response.json()
+            }).then((data) => {
+                if (data.machine_status == "OK") {
+                    console.log(`Machine ${input_machine_id} started.`);
+                    document.getElementById("status").innerHTML = (`Machine ${input_machine_id} started.`);
+                } else {
+                    document.getElementById("status").innerHTML = (`Machine start failed.`);
+                    console.log(`Machine start failed.`);
+                }
+            })
+        }
+
+        function clickStatusButton() {
+            document.getElementById("status").innerHTML = (`Testing PLC connection...`);
+            fetch(`http://127.0.0.1:8000/plc_status`).then((Response) => {
+                return Response.json()
+            }).then((data) => {
+                if (data.plc_status == "OK") {
+                    console.log("PLC is online.");
+                    document.getElementById("status").innerHTML = (`PLC is online at ${plc_ip}.`);
+                } else {
+                    document.getElementById("status").innerHTML = (`PLC offline.`);
+                    console.log(`PLC offline.`);
+                }
+            })
+        }
+
+        function backgroundStatusPolling() {
+
+            fetch(`http://127.0.0.1:8000/plc_status`).then((Response) => {
+                return Response.json()
+            }).then((data) => {
+                if (data.plc_status == "OK") {
+                    console.log("Background check: PLC is online.");
+                    document.getElementById("plc_status_display").style.background = '#09b020';
+                    document.getElementById("plc_status_display").value = "PLC online";
+                } else {
+
+                    console.log("Background check: PLC is offline.");
+                    document.getElementById("plc_status_display").style.background = '#fa4343 ';
+                    document.getElementById("plc_status_display").value = "PLC offline";
+                }
+            })
+        }
+
+
+
+    </script>
+</body>
+
+</html>
