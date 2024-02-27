@@ -26,7 +26,52 @@
                         },
                         {
                             "name": "Ordner B1b",
-                            "subfolders": []
+                            "subfolders": [
+                                {
+                                    "name": "Ordner Alpha",
+                                    "subfolders": []
+                                },
+                                {
+                                    "name": "Ordner Bravo",
+                                    "subfolders": []
+                                },
+                                {
+                                    "name": "Ordner Charlie",
+                                    "subfolders": []
+                                },
+                                {
+                                    "name": "Ordner Delta",
+                                    "subfolders": []
+                                },
+                                {
+                                    "name": "Ordner Echo",
+                                    "subfolders": []
+                                },
+                                {
+                                    "name": "Ordner Foxtrot",
+                                    "subfolders": []
+                                },
+                                {
+                                    "name": "Ordner Golf",
+                                    "subfolders": []
+                                },
+                                {
+                                    "name": "Ordner Hotel",
+                                    "subfolders": []
+                                },
+                                {
+                                    "name": "Ordner India",
+                                    "subfolders": []
+                                },
+                                {
+                                    "name": "Ordner Juliet",
+                                    "subfolders": []
+                                },
+                                {
+                                    "name": "Ordner Kilo",
+                                    "subfolders": []
+                                }
+                            ]
                         }
                     ]
                 },
