@@ -141,6 +141,10 @@
     width: 60px;
     height: 60px;
     border-radius: 6px;
-    background-color: #000;
+    background-color: #ffffff;
     z-index: 1;
+}
+
+#dynamic-folder-structure ul {
+    display: none;
 }
