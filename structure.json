@@ -1,0 +1,40 @@
+{
+    "name": "ROOT",
+    "subfolders": [
+        {
+            "name": "Ordner A",
+            "subfolders": [
+                {
+                    "name": "Ordner 1",
+                    "subfolders": []
+                },
+                {
+                    "name": "Ordner 2",
+                    "subfolders": []
+                }
+            ]
+        },
+        {
+            "name": "Ordner B",
+            "subfolders": [
+                {
+                    "name": "Ordner 1",
+                    "subfolders": [
+                        {
+                            "name": "Ordner B1a",
+                            "subfolders": []
+                        },
+                        {
+                            "name": "Ordner B1b",
+                            "subfolders": []
+                        }
+                    ]
+                },
+                {
+                    "name": "Ordner 2",
+                    "subfolders": []
+                }
+            ]
+        }
+    ]
+}
