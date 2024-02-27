@@ -14,7 +14,7 @@ function loadFolderStructure() {
             if (folder.subfolders && folder.subfolders.length > 0) {
                 subfoldersHTML = '<ul>' + folder.subfolders.map(createFolderHTML).join('') + '</ul>';
             }
-            return '<li><a href="javascript:void(0);">' + folder.name + '</a>' + subfoldersHTML + '</li>';
+            return '<li><a href="javascript:void(0);">' + '<div class="member-viewbox">' + '<div class="member-image">' + '<img src="Folder_Icon.svg" alt="Member"></img>' + '<div class="member-details">' + folder.name + '</div>' + '</div>' + '</div>' + '</a>' + '  ' + subfoldersHTML + '</li>';
         }
 
         var htmlStructure = '<ul>' + createFolderHTML(folderStructure) + '</ul>';
